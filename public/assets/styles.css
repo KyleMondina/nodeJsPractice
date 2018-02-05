@@ -1,0 +1,23 @@
+body
+{
+  background-color:white;
+
+}
+
+#wrapper
+{
+  background-color:#1ebbd7;
+  width:85%;
+  height:100%;
+  margin:auto;
+  border-color: black;
+  border-style: solid;
+  display:grid;
+
+}
+
+nav
+{
+  margin:0px;
+  background-color:#005073;
+}
