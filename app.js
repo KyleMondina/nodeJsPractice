@@ -1,33 +1,20 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-var bodyParser = require('body-parser');
-var urlencodedparser = bodyParser.urlencoded({extended:false});
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+const routes = require('./router.js');
+
+mongoose.connect('mongodb://weebo:weebo@ds225608.mlab.com:25608/animesearch');
+const animeSchema = new mongoose.Schema({
+  name: String,
+  imageurl: String
+});
+const AnimeModel = mongoose.model('animeCollection', animeSchema);
+module.exports = AnimeModel;
 
 app.set('view engine', 'ejs');
+
 app.use('/public', express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
-
-
-app.get('/', function(req, res){
-  res.render('index');
-});
-
-app.get('/index', function(req,res){
-  res.render('index');
-});
-
-app.get('/search', function(req, res){
-  res.render('search');
-});
-
-app.post('/search', urlencodedparser, function(req, res){
-  console.log(req.body);
-  res.json(req.body);
-});
-
-app.get('/upload', function(req, res){
-  res.render('upload');
-});
+app.use(routes);
 
 app.listen(3000);

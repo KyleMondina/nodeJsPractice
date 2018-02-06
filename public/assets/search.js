@@ -1,21 +1,17 @@
 $(document).ready(function(){
 
   $("#search").on('submit', function(){
-    var item = $('form input');
-    var data3 = {item3:item.val()};
+    const item = $('form input');
+    const animeName = {name:item.val()};
 
     $.ajax({
        type: 'POST',
        url: '/search',
-       data: data3,
+       data: animeName,
        success: function(data){
-         //do something with the data via front-end framework
-         alert(data.item3);
-         location.reload();
+         alert("connection successful");
        },
      });
-
-     
 
      return false;
   });
